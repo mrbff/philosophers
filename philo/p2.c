@@ -2,7 +2,7 @@
 # include <pthread.h>
 # include <sys/time.h>
 # include <stdlib.h>
-#include <unistd.h>
+# include <unistd.h>
 
 typedef struct s_arg
 {
@@ -19,6 +19,8 @@ typedef struct s_arg
     size_t              **idp1;
     size_t              **idp2;
 }	t_arg;
+
+//void    *sleepr(void *p);
 
 void    init_args(t_arg *args, int ac, char **av)
 {
@@ -42,33 +44,37 @@ long long    millisec(void)
     return (milliseconds);
 }
 
-void    *r1(void *p)
+void    *r(void *p)
 {   
-    size_t *tmp;
-
     pthread_mutex_lock(&(((t_arg *)(p))->mutex1));
+    size_t *tmp;
+    
+    if (**(((t_arg *)(p))->idp1) % 2)
+        sleep (1);
+    else
+        sleep (2);
+    
     tmp = *(((t_arg *)(p))->idp1);
-    printf("1 at time %lld, philo %zu\n", millisec(), *tmp );
+    printf("eat at time %lld, philo %zu\n", millisec(), *tmp );
     free(tmp);
-//    printf("1\n");
-//    usleep(1000);
+    usleep(1000);
     pthread_mutex_unlock(&(((t_arg *)(p))->mutex1));
     return (NULL);
 }
-
-void    *r2(void *p)
+/*
+void    *sleepr(void *p)
 {
     size_t *tmp;
 
-    pthread_mutex_lock(&(((t_arg *)(p))->mutex2));
+//    pthread_mutex_lock(&(((t_arg *)(p))->mutex2));
     tmp = *(((t_arg *)(p))->idp2);
-    printf("2 at time %lld, philo %zu\n", millisec(), *tmp );
+    printf("sleep at time %lld, philo %zu\n", millisec(), *tmp );
     free(tmp);
-    //printf("2\n");
 //    usleep(1000);
-    pthread_mutex_unlock(&(((t_arg *)(p))->mutex2));
+//    pthread_mutex_unlock(&(((t_arg *)(p))->mutex2));
+    eatr(p);
     return (NULL);
-}
+}*/
 
 int main(int ac, char **av)
 {
@@ -85,23 +91,27 @@ int main(int ac, char **av)
     phi = malloc(sizeof(pthread_t) * args.num);
     pthread_mutex_init(&(args.mutex1), NULL);
     pthread_mutex_init(&(args.mutex2), NULL);
+    
     while (i < args.num)
-    {
-        tmp = malloc(sizeof(size_t));
-        *tmp = i;
-        usleep(100);
-        if (i % 2 == 0)
-        {
-            *(args.idp1) = tmp;
-            pthread_create(&phi[i], NULL, &r1, &args);
-        }
-        else
-        {
-            *(args.idp2) = tmp;
-            pthread_create(&phi[i], NULL, &r2, &args);
-        }
+    {//if num pari
+        tmp = malloc(sizeof(size_t));///
+        *tmp = i + 1;
+        *(args.idp1) = tmp;///
+        pthread_create(&phi[i], NULL, &r, &args);
         i++;
     }
+    /*   usleep(1000);
+        if (i < args.num)
+        {
+            tmp = malloc(sizeof(size_t));///
+            *tmp = i;
+            usleep(1000);
+            *(args.idp2) = tmp;///
+            pthread_create(&phi[i + 1], NULL, &sleepr, &args);
+        }
+        i++;
+    }*/
+    
     i = 0;
     while (i < args.num)
     {

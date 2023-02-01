@@ -4,6 +4,16 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+long long    millisec(void)
+{
+    struct timeval tp;
+    long long milliseconds;
+
+    gettimeofday(&tp, NULL);
+    milliseconds = tp.tv_sec * 1000 + tp.tv_usec / 1000;
+    return (milliseconds);
+}
+
 typedef struct s_arg
 {
 	size_t              num;//num of philo and forks
@@ -16,11 +26,9 @@ typedef struct s_arg
 ///    
     pthread_mutex_t     mutex1;
     pthread_mutex_t     mutex2;
-    size_t              **idp1;
-    size_t              **idp2;
+    size_t              **idp;
+//    size_t              **idp2;
 }	t_arg;
-
-//void    *sleepr(void *p);
 
 void    init_args(t_arg *args, int ac, char **av)
 {
@@ -30,51 +38,29 @@ void    init_args(t_arg *args, int ac, char **av)
     args->tosleep = atoi(av[4]);
     if (ac == 6)
         args->meals = atoi(av[5]);
-    (args->idp1) = malloc(sizeof(size_t *));
-    (args->idp2) = malloc(sizeof(size_t *));
+    (args->idp) = malloc(sizeof(size_t *) * args->num);
+//    (args->idp2) = malloc(sizeof(size_t *));
 }
 
-long long    millisec(void)
-{
-    struct timeval tp;
-    long long milliseconds;
-
-    gettimeofday(&tp, NULL);
-    milliseconds = tp.tv_sec * 1000 + tp.tv_usec / 1000;
-    return (milliseconds);
-}
 
 void    *r(void *p)
 {   
     pthread_mutex_lock(&(((t_arg *)(p))->mutex1));
     size_t *tmp;
-    
+    /*
     if (**(((t_arg *)(p))->idp1) % 2)
-        sleep (1);
+        usleep (10000);
     else
-        sleep (2);
-    
-    tmp = *(((t_arg *)(p))->idp1);
+        usleep (20000);
+    */
+    tmp = *(((t_arg *)(p))->idp);
     printf("eat at time %lld, philo %zu\n", millisec(), *tmp );
     free(tmp);
-    usleep(1000);
+    
+//    usleep(1000);
     pthread_mutex_unlock(&(((t_arg *)(p))->mutex1));
     return (NULL);
 }
-/*
-void    *sleepr(void *p)
-{
-    size_t *tmp;
-
-//    pthread_mutex_lock(&(((t_arg *)(p))->mutex2));
-    tmp = *(((t_arg *)(p))->idp2);
-    printf("sleep at time %lld, philo %zu\n", millisec(), *tmp );
-    free(tmp);
-//    usleep(1000);
-//    pthread_mutex_unlock(&(((t_arg *)(p))->mutex2));
-    eatr(p);
-    return (NULL);
-}*/
 
 int main(int ac, char **av)
 {
@@ -93,25 +79,25 @@ int main(int ac, char **av)
     pthread_mutex_init(&(args.mutex2), NULL);
     
     while (i < args.num)
-    {//if num pari
+    {
         tmp = malloc(sizeof(size_t));///
         *tmp = i + 1;
-        *(args.idp1) = tmp;///
+        *(args.idp) = tmp;///
         pthread_create(&phi[i], NULL, &r, &args);
-        i++;
+        i += 2;
     }
-    /*   usleep(1000);
-        if (i < args.num)
-        {
-            tmp = malloc(sizeof(size_t));///
-            *tmp = i;
-            usleep(1000);
-            *(args.idp2) = tmp;///
-            pthread_create(&phi[i + 1], NULL, &sleepr, &args);
-        }
-        i++;
-    }*/
-    
+
+    i = 1
+    while (i < args.num)
+    {
+        tmp = malloc(sizeof(size_t));///
+        *tmp = i + 1;
+        *(args.idp) = tmp;///
+        pthread_create(&phi[i], NULL, &r, &args);
+        (*(args.idp))++;
+        i += 2;
+    }
+       
     i = 0;
     while (i < args.num)
     {
@@ -119,10 +105,8 @@ int main(int ac, char **av)
         i++;
     }
     free(phi);
-    free(args.idp1);
-    free(args.idp2);
+    free(args.idp);
     pthread_mutex_destroy(&(args.mutex1));
     pthread_mutex_destroy(&(args.mutex2));
-//    sleep(1);
     return (0);
 }

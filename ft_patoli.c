@@ -8,7 +8,7 @@ static int	ft_isdigit(int c)
 		return (0);
 }
 
-long long int	ft_patoli(const char *nptr)
+long long	ft_patoli(const char *nptr)
 {
 	size_t			i;
 	long long int	num;

@@ -7,5 +7,5 @@ long long	ft_millisec(void)
 
 	gettimeofday(&tp, NULL);
 	milliseconds = tp.tv_sec * 1000 + tp.tv_usec / 1000;
-	return (milliseconds)
+	return (milliseconds);
 }

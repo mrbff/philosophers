@@ -2,6 +2,12 @@
 
 int main(int ac, char **av)
 {
-    if (ft_check(int ac, char **av))
-        return (0);
+	t_phi	*phi;
+
+	if (ft_check(ac, av))
+		return (0);
+	phi = ft_create_phils(ac, av);
+	if (!phi)
+		return (1);
+
 }

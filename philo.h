@@ -6,7 +6,7 @@
 /*   By: mabaffo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 14:19:29 by mabaffo           #+#    #+#             */
-/*   Updated: 2023/02/01 23:35:40 by mabaffo          ###   ########.fr       */
+/*   Updated: 2023/02/02 11:36:48 by mabaffo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 
 long long	ft_patoli(const char *nptr);
 int			ft_check(int ac, char **av);
-t_phi		*ft_create_phils(t_phi *phi,  int ac, char **av);
+t_phi		*ft_create_phils(int ac, char **av);
 long long	ft_millisec(void);
 
 #endif

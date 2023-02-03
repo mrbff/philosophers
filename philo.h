@@ -6,7 +6,7 @@
 /*   By: mabaffo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 14:19:29 by mabaffo           #+#    #+#             */
-/*   Updated: 2023/02/02 11:36:48 by mabaffo          ###   ########.fr       */
+/*   Updated: 2023/02/03 17:11:57 by mabaffo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@
 
 	typedef struct s_args
 	{
-		size_t	num;
-		size_t	todie;
-		size_t	toeat;
-		size_t	tosleep;
+		size_t			num;
+		size_t			todie;
+		size_t			toeat;
+		size_t			tosleep;
+		int				end;
+		pthread_mutex_t	dmux;
 	}	t_args;
 
 	typedef struct s_phi
@@ -31,6 +33,8 @@
 		t_args			*args;
 		long long		meals;//[optional], -1 if not exist
 		size_t			id;
+		int				alive;
+		long long		lst_meal;
 		pthread_mutex_t	mutex;
 	}	t_phi;
 

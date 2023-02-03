@@ -20,7 +20,8 @@ static void	*r(void *p)
 	{
 		if (phi->args->end)
 			return (NULL);
-		phi->alive = (ft_millisec() - phi->lst_meal) <= phi->args->todie;
+		if (ft_millisec() - phi->lst_meal > phi->args->todie)
+			phi->alive = 0;
 		if (!(phi->alive))
 			return (death(ft_millisec(), phi));
 		printf("%zu is thinking at %lld\n", phi->id, ft_millisec());
@@ -31,12 +32,19 @@ static void	*r(void *p)
 		if (phi->meals > 0)
 				(phi->alive) = (--(phi->meals) != 0);
 		usleep(phi->args->toeat);
+		phi->lst_meal = ft_millisec();
 		pthread_mutex_unlock(&(phi->mutex));
 		pthread_mutex_unlock(next_mux);
 		printf("%zu is sleeping at %lld\n", phi->id, ft_millisec());
 		usleep(phi->args->tosleep);
 	}
 	return (NULL);
+}
+
+static void	freephi(t_phi *phi)
+{
+	free(phi->args);
+	free(phi);
 }
 
 int	main(int ac, char **av)
@@ -59,5 +67,11 @@ int	main(int ac, char **av)
 	i = -1;
 	while (++i < phi->args->num)
 		pthread_join(th[i], NULL);
+	i = -1;
+	while (++i < phi->args->num)
+		pthread_mutex_destroy(&(phi[i].mutex));
+	pthread_mutex_destroy(&(phi->args->dmux));
+	freephi(phi);
+	free(th);
 	return (0);
 }

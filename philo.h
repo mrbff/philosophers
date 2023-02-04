@@ -6,7 +6,7 @@
 /*   By: mabaffo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 14:19:29 by mabaffo           #+#    #+#             */
-/*   Updated: 2023/02/03 17:11:57 by mabaffo          ###   ########.fr       */
+/*   Updated: 2023/02/04 16:33:32 by mabaffo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@
 		t_args			*args;
 		long long		meals;//[optional], -1 if not exist
 		size_t			id;
-		int				alive;
 		long long		lst_meal;
 		pthread_mutex_t	mutex;
 	}	t_phi;
@@ -42,6 +41,8 @@ long long	ft_patoli(const char *nptr);
 int			ft_check(int ac, char **av);
 t_phi		*ft_create_phils(int ac, char **av);
 long long	ft_millisec(void);
+void		*ft_death(long long time, t_phi *phi);
+void		*ft_monitor(void *p);
 
 #endif
 /*

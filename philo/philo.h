@@ -6,7 +6,7 @@
 /*   By: mabaffo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 14:19:29 by mabaffo           #+#    #+#             */
-/*   Updated: 2023/01/18 16:09:55 by mabaffo          ###   ########.fr       */
+/*   Updated: 2023/02/04 16:33:32 by mabaffo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,38 @@
 # define PHILO_H
 # include <stdio.h>
 # include <pthread.h>
+# include <sys/time.h>
+# include <stdlib.h>
+# include <unistd.h>
 
+	typedef struct s_args
+	{
+		size_t			num;
+		size_t			todie;
+		size_t			toeat;
+		size_t			tosleep;
+		int				end;
+		pthread_mutex_t	dmux;
+	}	t_args;
+
+	typedef struct s_phi
+	{
+		t_args			*args;
+		long long		meals;//[optional], -1 if not exist
+		size_t			id;
+		long long		lst_meal;
+		pthread_mutex_t	mutex;
+	}	t_phi;
+
+long long	ft_patoli(const char *nptr);
+int			ft_check(int ac, char **av);
+t_phi		*ft_create_phils(int ac, char **av);
+long long	ft_millisec(void);
+void		*ft_death(long long time, t_phi *phi);
+void		*ft_monitor(void *p);
+
+#endif
+/*
 typedef struct s_param
 {
 	size_t	number;//philo and forks
@@ -25,5 +56,4 @@ typedef struct s_param
 	//[optional]
 	long long	meals;//time for every philo to eat for the simulation stops
 }	t_param;
-
-#endif
+*/

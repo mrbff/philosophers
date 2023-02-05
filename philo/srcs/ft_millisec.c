@@ -1,4 +1,4 @@
-#include "philo.h"
+#include "../philo.h"
 
 long long	ft_millisec(void)
 {

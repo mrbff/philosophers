@@ -6,7 +6,7 @@
 #    By: mabaffo <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/17 20:40:06 by mabaffo           #+#    #+#              #
-#    Updated: 2023/01/18 16:21:05 by mabaffo          ###   ########.fr        #
+#    Updated: 2023/02/05 18:16:23 by mabaffo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,10 @@ NAME			:=	philo
 SRCS_DIR		:=	./srcs/
 
 FILES		:=	main.c \
-				ft_check_and_create.c \
+				check_n_create.c \
+				ft_millisec.c \
+				ft_patoli.c \
+				monitor.c \
 
 SRCS			:=	$(addprefix $(SRCS_DIR), $(FILES))
 
@@ -45,12 +48,10 @@ $(NAME):	$(OBJS)
 all:			$(NAME)
 
 clean:
-				@ make -sC ./libft clean
 				@ ${RM} *.o */*.o */*/*.o
 				@ echo "$(RED)Deleting $(CYAN)objs $(CLR_RMV)✔️"
 
 fclean:			clean
-				@ $(RM) $(NAME) $(BNAME) $(LIBFT)
 				@ echo "$(RED)Deleting $(CYAN)binaries $(CLR_RMV)✔️"
 
 re:				fclean all

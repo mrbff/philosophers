@@ -6,17 +6,17 @@
 /*   By: mabaffo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 16:53:48 by mabaffo           #+#    #+#             */
-/*   Updated: 2023/02/04 17:06:05 by mabaffo          ###   ########.fr       */
+/*   Updated: 2023/02/05 18:11:37 by mabaffo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../philo.h"
 
 static int	help_msg(void)
 {
 	printf(" \nWrong input arguments\n\n");
 	printf("[number] [time to starve] [time to eat] [time to sleep] [meals]\n");
-	printf("\n• Every parameter must be positive\n");
+	printf("\n• Every parameter must be a positive integer\n");
 	printf("• 'time to starve, time to eat, time to sleep' are in ms\n");
 	printf("• 'meals' is optional\n");
 	return (1);

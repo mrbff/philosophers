@@ -6,11 +6,11 @@
 /*   By: mabaffo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 14:29:58 by mabaffo           #+#    #+#             */
-/*   Updated: 2023/02/04 16:35:58 by mabaffo          ###   ########.fr       */
+/*   Updated: 2023/02/05 18:13:29 by mabaffo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../philo.h"
 
 void	*ft_monitor(void *p)
 {

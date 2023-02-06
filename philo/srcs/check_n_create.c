@@ -6,7 +6,7 @@
 /*   By: mabaffo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 16:53:48 by mabaffo           #+#    #+#             */
-/*   Updated: 2023/02/05 18:11:37 by mabaffo          ###   ########.fr       */
+/*   Updated: 2023/02/06 11:37:25 by mabaffo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ static void	init_args(t_args *args, char **av)
 	args->tosleep = ft_patoli(av[4]);
 	args->end = 0;
 	pthread_mutex_init(&(args->dmux), NULL);
+	pthread_mutex_init(&(args->pmux), NULL);
 }
 
 static void	id_meals_alive(t_phi *phils, long long i, int ac, char **av)

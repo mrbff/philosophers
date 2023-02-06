@@ -6,7 +6,7 @@
 /*   By: mabaffo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 13:26:41 by mabaffo           #+#    #+#             */
-/*   Updated: 2023/02/06 12:52:03 by mabaffo          ###   ########.fr       */
+/*   Updated: 2023/02/06 17:22:49 by mabaffo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,16 @@
 void	*ft_death(long long time, t_phi *phi)
 {
 	printf("%lld %zu died\n", time, phi->id);
-	pthread_mutex_lock(&(phi->args->dmux));
+//	pthread_mutex_lock(&(phi->args->dmux));
 	phi->args->end = 1;
-	pthread_mutex_unlock(&(phi->args->dmux));
+//	pthread_mutex_unlock(&(phi->args->dmux));
+	pthread_mutex_unlock(&(phi->mutex));
 	return (NULL);
 }
 
-static void	ft_print(char *s, t_phi *phi, int end)
+static void	ft_print(char *s, t_phi *phi)
 {
-	if (!end)
+	if (!(phi->args->end))
 	{
 		pthread_mutex_lock(&(phi->args->pmux));
 		printf(s, ft_millisec(), phi->id);
@@ -41,19 +42,23 @@ static void	*r(void *p)
 	while (!(phi->args->end))
 	{
 		if (ft_millisec() - phi->lst_meal > (long long)phi->args->todie)
+		{
+			pthread_mutex_lock(&(phi->args->dmux));
 			ft_death(ft_millisec(), phi);
-		ft_print("%lld %zu is thinking\n", phi, phi->args->end);
+			pthread_mutex_unlock(&(phi->args->dmux));
+		}
+		ft_print("%lld %zu is thinking\n", phi);//phi->id, phi->args->end, &(phi->args->pmux));
 		pthread_mutex_lock(&(phi->mutex));
 		pthread_mutex_lock(next_mux);
-		ft_print("%lld %zu has taken a fork\n", phi, phi->args->end);
+		ft_print("%lld %zu has taken a fork\n", phi);//->id, phi->args->end, &(phi->args->pmux));
 		phi->lst_meal = ft_millisec();
-		ft_print("%lld %zu is eating\n", phi, phi->args->end);
+		ft_print("%lld %zu is eating\n",  phi);//->id, phi->args->end, &(phi->args->pmux));
 		usleep(phi->args->toeat * 1000);
 		if (phi->meals > 0)
 			(phi->meals)--;
 		pthread_mutex_unlock(&(phi->mutex));
 		pthread_mutex_unlock(next_mux);
-		ft_print("%lld %zu is sleeping\n", phi, phi->args->end);
+		ft_print("%lld %zu is sleeping\n",  phi);//->id, phi->args->end, &(phi->args->pmux));
 		usleep(phi->args->tosleep * 1000);
 	}
 	return (NULL);

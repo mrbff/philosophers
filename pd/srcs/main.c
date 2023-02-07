@@ -6,47 +6,58 @@
 /*   By: mabaffo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 13:26:41 by mabaffo           #+#    #+#             */
-/*   Updated: 2023/02/07 16:03:04 by mabaffo          ###   ########.fr       */
+/*   Updated: 2023/02/07 16:38:09 by mabaffo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../philo.h"
-
+/*
 void	*ft_death(long long time, t_phi *phi)
 {
+//	long long	i;
+
 	printf("%lld %zu died\n", time, phi->id);
-//	pthread_mutex_lock(&(phi->args->dmux));
+	pthread_mutex_lock(&(phi->args->dmux));
 	phi->args->end = 1;
+	pthread_mutex_unlock(&(phi->args->dmux));
+//	i = -1;
+//	while (++i < (long long)phi->args->num)
+//		pthread_mutex_unlock(&((phi - (phi->id - 1))[i].mutex));
 //	pthread_mutex_unlock(&(phi->args->dmux));
-	pthread_mutex_unlock(&(phi->mutex));
+//	pthread_mutex_unlock(&(phi->args->pmux));
 	return (NULL);
 }
-
-static void	ft_print(char *s, t_phi *phi)
+*/
+void	ft_print(const char *s, const t_phi *phi)
 {
+	pthread_mutex_lock(&(phi->args->dmux));
 	if (!(phi->args->end))
 	{
 		pthread_mutex_lock(&(phi->args->pmux));
 		printf(s, ft_millisec(), phi->id);
 		pthread_mutex_unlock(&(phi->args->pmux));
 	}
+	pthread_mutex_unlock(&(phi->args->dmux));
 }
 
 static void	*r(void *p)
 {
 	t_phi			*phi;
 	pthread_mutex_t	*next_mux;
+	int				end;
 
 	phi = (t_phi *)p;
 	next_mux = &(phi - (phi->id - 1))[phi->id % phi->args->num].mutex;
-	while (!(phi->args->end))
+	end = 0;
+	while (!end)
 	{
-		if (ft_millisec() - phi->lst_meal > (long long)phi->args->todie)
+		
+/*		if (ft_millisec() - phi->lst_meal > (long long)phi->args->todie)
 		{
-			pthread_mutex_lock(&(phi->args->dmux));
+//			pthread_mutex_lock(&(phi->args->dmux));
 			ft_death(ft_millisec(), phi);
-			pthread_mutex_unlock(&(phi->args->dmux));
-		}
+//			pthread_mutex_unlock(&(phi->args->dmux));
+		}*/
 		ft_print("%lld %zu is thinking\n", phi);//phi->id, phi->args->end, &(phi->args->pmux));
 		pthread_mutex_lock(&(phi->mutex));
 		pthread_mutex_lock(next_mux);
@@ -56,10 +67,14 @@ static void	*r(void *p)
 		usleep(phi->args->toeat * 1000);
 		if (phi->meals > 0)
 			(phi->meals)--;
+//		pthread_mutex_unlock(next_mux);
 		pthread_mutex_unlock(&(phi->mutex));
 		pthread_mutex_unlock(next_mux);
 		ft_print("%lld %zu is sleeping\n",  phi);//->id, phi->args->end, &(phi->args->pmux));
 		usleep(phi->args->tosleep * 1000);
+		pthread_mutex_lock(&(phi->args->dmux));
+		end = phi->args->end;
+		pthread_mutex_unlock(&(phi->args->dmux));
 	}
 	return (NULL);
 }
@@ -70,8 +85,13 @@ static void	freendstrymux(t_phi *phi, pthread_t *th)
 
 	i = -1;
 	while (++i < (long long)phi->args->num)
+	{
+//		pthread_mutex_unlock(&(phi[i].mutex));
 		pthread_mutex_destroy(&(phi[i].mutex));
+	}
+//	pthread_mutex_unlock(&(phi->args->dmux));
 	pthread_mutex_destroy(&(phi->args->dmux));
+//	pthread_mutex_unlock(&(phi->args->pmux));
 	pthread_mutex_destroy(&(phi->args->pmux));
 	free(phi->args);
 	free(phi);
@@ -108,4 +128,3 @@ int	main(int ac, char **av)
  * printf("%zu: phi[0].id = %zu\n", phi->id, (phi - (phi->id - 1))->id);
  * printf("to die = %zu\n", phi->args->todie);
  */
-

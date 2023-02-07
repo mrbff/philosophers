@@ -1,0 +1,870 @@
+==53585== Helgrind, a thread error detector
+==53585== Copyright (C) 2007-2017, and GNU GPL'd, by OpenWorks LLP et al.
+==53585== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==53585== Command: ./philo 2 10 1 1 2
+==53585== Parent PID: 16211
+==53585== 
+==53585== ---Thread-Announcement------------------------------------------
+==53585== 
+==53585== Thread #4 was created
+==53585==    at 0x49AA122: clone (clone.S:71)
+==53585==    by 0x486F2EB: create_thread (createthread.c:101)
+==53585==    by 0x4870E0F: pthread_create@@GLIBC_2.2.5 (pthread_create.c:817)
+==53585==    by 0x4842917: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x10972E: main (main.c:94)
+==53585== 
+==53585== ---Thread-Announcement------------------------------------------
+==53585== 
+==53585== Thread #2 was created
+==53585==    at 0x49AA122: clone (clone.S:71)
+==53585==    by 0x486F2EB: create_thread (createthread.c:101)
+==53585==    by 0x4870E0F: pthread_create@@GLIBC_2.2.5 (pthread_create.c:817)
+==53585==    by 0x4842917: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x1096FA: main (main.c:93)
+==53585== 
+==53585== ---Thread-Announcement------------------------------------------
+==53585== 
+==53585== Thread #1 is the program's root thread
+==53585== 
+==53585== ----------------------------------------------------------------
+==53585== 
+==53585==  Lock at 0x4A80120 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109B59: ft_create_phils (check_n_create.c:87)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80120 is 32 bytes inside a block of size 144 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109AC7: ft_create_phils (check_n_create.c:76)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Block was alloc'd by thread #1
+==53585== 
+==53585==  Lock at 0x4A80168 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109B59: ft_create_phils (check_n_create.c:87)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80168 is 104 bytes inside a block of size 144 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109AC7: ft_create_phils (check_n_create.c:76)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Block was alloc'd by thread #1
+==53585== 
+==53585== Possible data race during read of size 8 at 0x4A80118 by thread #4
+==53585== Locks held: none
+==53585==    at 0x109D9C: ft_monitor (monitor.c:30)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585== 
+==53585== This conflicts with a previous write of size 8 by thread #2
+==53585== Locks held: 2, at addresses 0x4A80120 0x4A80168
+==53585==    at 0x1094AA: r (main.c:49)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585==  Address 0x4a80118 is 24 bytes inside a block of size 144 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109AC7: ft_create_phils (check_n_create.c:76)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Block was alloc'd by thread #1
+==53585== 
+==53585== ---Thread-Announcement------------------------------------------
+==53585== 
+==53585== Thread #3 was created
+==53585==    at 0x49AA122: clone (clone.S:71)
+==53585==    by 0x486F2EB: create_thread (createthread.c:101)
+==53585==    by 0x4870E0F: pthread_create@@GLIBC_2.2.5 (pthread_create.c:817)
+==53585==    by 0x4842917: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x1096FA: main (main.c:93)
+==53585== 
+==53585== ----------------------------------------------------------------
+==53585== 
+==53585==  Lock at 0x4A80090 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x10998E: init_args (check_n_create.c:53)
+==53585==    by 0x109AAA: ft_create_phils (check_n_create.c:75)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80090 is 80 bytes inside a block of size 120 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109A82: ft_create_phils (check_n_create.c:72)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Block was alloc'd by thread #1
+==53585== 
+==53585== Possible data race during write of size 1 at 0x4A80370 by thread #4
+==53585== Locks held: none
+==53585==    at 0x48488CC: mempcpy (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x491A631: _IO_new_file_xsputn (fileops.c:1236)
+==53585==    by 0x491A631: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==53585==    by 0x49027AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==53585==    by 0x48ECD3E: printf (printf.c:33)
+==53585==    by 0x1092FC: ft_death (main.c:17)
+==53585==    by 0x109DFA: ft_monitor (monitor.c:32)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585== 
+==53585== This conflicts with a previous write of size 1 by thread #3
+==53585== Locks held: 1, at address 0x4A80090
+==53585==    at 0x48488CC: mempcpy (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x491A631: _IO_new_file_xsputn (fileops.c:1236)
+==53585==    by 0x491A631: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==53585==    by 0x49027AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==53585==    by 0x48ECD3E: printf (printf.c:33)
+==53585==    by 0x10938F: ft_print (main.c:29)
+==53585==    by 0x109467: r (main.c:45)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==  Address 0x4a80370 is 0 bytes inside a block of size 1,024 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x490CD03: _IO_file_doallocate (filedoalloc.c:101)
+==53585==    by 0x491CECF: _IO_doallocbuf (genops.c:347)
+==53585==    by 0x491BF2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==53585==    by 0x491A6B4: _IO_new_file_xsputn (fileops.c:1244)
+==53585==    by 0x491A6B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==53585==    by 0x49027AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==53585==    by 0x48ECD3E: printf (printf.c:33)
+==53585==    by 0x10938F: ft_print (main.c:29)
+==53585==    by 0x109467: r (main.c:45)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585==  Block was alloc'd by thread #2
+==53585== 
+==53585== ----------------------------------------------------------------
+==53585== 
+==53585==  Lock at 0x4A80090 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x10998E: init_args (check_n_create.c:53)
+==53585==    by 0x109AAA: ft_create_phils (check_n_create.c:75)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80090 is 80 bytes inside a block of size 120 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109A82: ft_create_phils (check_n_create.c:72)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Block was alloc'd by thread #1
+==53585== 
+==53585== Possible data race during write of size 1 at 0x4A8037D by thread #4
+==53585== Locks held: none
+==53585==    at 0x48488A6: mempcpy (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x491A631: _IO_new_file_xsputn (fileops.c:1236)
+==53585==    by 0x491A631: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==53585==    by 0x4901FE5: __vfprintf_internal (vfprintf-internal.c:1719)
+==53585==    by 0x48ECD3E: printf (printf.c:33)
+==53585==    by 0x1092FC: ft_death (main.c:17)
+==53585==    by 0x109DFA: ft_monitor (monitor.c:32)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585== 
+==53585== This conflicts with a previous write of size 1 by thread #3
+==53585== Locks held: 1, at address 0x4A80090
+==53585==    at 0x48488A6: mempcpy (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x491A631: _IO_new_file_xsputn (fileops.c:1236)
+==53585==    by 0x491A631: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==53585==    by 0x4901FE5: __vfprintf_internal (vfprintf-internal.c:1719)
+==53585==    by 0x48ECD3E: printf (printf.c:33)
+==53585==    by 0x10938F: ft_print (main.c:29)
+==53585==    by 0x109467: r (main.c:45)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==  Address 0x4a8037d is 13 bytes inside a block of size 1,024 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x490CD03: _IO_file_doallocate (filedoalloc.c:101)
+==53585==    by 0x491CECF: _IO_doallocbuf (genops.c:347)
+==53585==    by 0x491BF2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==53585==    by 0x491A6B4: _IO_new_file_xsputn (fileops.c:1244)
+==53585==    by 0x491A6B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==53585==    by 0x49027AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==53585==    by 0x48ECD3E: printf (printf.c:33)
+==53585==    by 0x10938F: ft_print (main.c:29)
+==53585==    by 0x109467: r (main.c:45)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585==  Block was alloc'd by thread #2
+==53585== 
+==53585== ----------------------------------------------------------------
+==53585== 
+==53585==  Lock at 0x4A80068 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109979: init_args (check_n_create.c:52)
+==53585==    by 0x109AAA: ft_create_phils (check_n_create.c:75)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80068 is 40 bytes inside a block of size 120 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109A82: ft_create_phils (check_n_create.c:72)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Block was alloc'd by thread #1
+==53585== 
+==53585== Possible data race during write of size 4 at 0x4A80060 by thread #4
+==53585== Locks held: 1, at address 0x4A80068
+==53585==    at 0x109317: ft_death (main.c:19)
+==53585==    by 0x109DFA: ft_monitor (monitor.c:32)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585== 
+==53585== This conflicts with a previous read of size 4 by thread #3
+==53585== Locks held: none
+==53585==    at 0x10955C: r (main.c:41)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585==  Address 0x4a80060 is 32 bytes inside a block of size 120 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109A82: ft_create_phils (check_n_create.c:72)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Block was alloc'd by thread #1
+==53585== 
+==53585== ----------------------------------------------------------------
+==53585== 
+==53585==  Lock at 0x4A80120 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109B59: ft_create_phils (check_n_create.c:87)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80120 is 32 bytes inside a block of size 144 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109AC7: ft_create_phils (check_n_create.c:76)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Block was alloc'd by thread #1
+==53585== 
+==53585==  Lock at 0x4A80168 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109B59: ft_create_phils (check_n_create.c:87)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80168 is 104 bytes inside a block of size 144 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109AC7: ft_create_phils (check_n_create.c:76)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Block was alloc'd by thread #1
+==53585== 
+==53585== Possible data race during write of size 8 at 0x4A80108 by thread #2
+==53585== Locks held: 2, at addresses 0x4A80120 0x4A80168
+==53585==    at 0x109500: r (main.c:53)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585== 
+==53585== This conflicts with a previous read of size 8 by thread #4
+==53585== Locks held: none
+==53585==    at 0x109D6A: ft_monitor (monitor.c:28)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585==  Address 0x4a80108 is 8 bytes inside a block of size 144 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109AC7: ft_create_phils (check_n_create.c:76)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Block was alloc'd by thread #1
+==53585== 
+==53585== ----------------------------------------------------------------
+==53585== 
+==53585==  Lock at 0x4A80068 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109979: init_args (check_n_create.c:52)
+==53585==    by 0x109AAA: ft_create_phils (check_n_create.c:75)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80068 is 40 bytes inside a block of size 120 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109A82: ft_create_phils (check_n_create.c:72)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Block was alloc'd by thread #1
+==53585== 
+==53585== Possible data race during read of size 4 at 0x4A80060 by thread #2
+==53585== Locks held: none
+==53585==    at 0x109527: r (main.c:56)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585== 
+==53585== This conflicts with a previous write of size 4 by thread #4
+==53585== Locks held: 1, at address 0x4A80068
+==53585==    at 0x109317: ft_death (main.c:19)
+==53585==    by 0x109DFA: ft_monitor (monitor.c:32)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585==  Address 0x4a80060 is 32 bytes inside a block of size 120 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109A82: ft_create_phils (check_n_create.c:72)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Block was alloc'd by thread #1
+==53585== 
+==53585== ----------------------------------------------------------------
+==53585== 
+==53585== Thread #3: lock order "0x4A80120 before 0x4A80168" violated
+==53585== 
+==53585== Observed (incorrect) order is: acquisition of lock at 0x4A80168
+==53585==    at 0x483FEDF: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109477: r (main.c:46)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585== 
+==53585==  followed by a later acquisition of lock at 0x4A80120
+==53585==    at 0x483FEDF: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109483: r (main.c:47)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585== 
+==53585== Required order was established by acquisition of lock at 0x4A80120
+==53585==    at 0x483FEDF: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109477: r (main.c:46)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585== 
+==53585==  followed by a later acquisition of lock at 0x4A80168
+==53585==    at 0x483FEDF: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109483: r (main.c:47)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585== 
+==53585==  Lock at 0x4A80120 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109B59: ft_create_phils (check_n_create.c:87)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80120 is 32 bytes inside a block of size 144 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109AC7: ft_create_phils (check_n_create.c:76)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Block was alloc'd by thread #1
+==53585== 
+==53585==  Lock at 0x4A80168 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109B59: ft_create_phils (check_n_create.c:87)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80168 is 104 bytes inside a block of size 144 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109AC7: ft_create_phils (check_n_create.c:76)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Block was alloc'd by thread #1
+==53585== 
+==53585== 
+==53585== ----------------------------------------------------------------
+==53585== 
+==53585==  Lock at 0x4A80120 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109B59: ft_create_phils (check_n_create.c:87)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80120 is 32 bytes inside a block of size 144 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109AC7: ft_create_phils (check_n_create.c:76)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Block was alloc'd by thread #1
+==53585== 
+==53585==  Lock at 0x4A80168 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109B59: ft_create_phils (check_n_create.c:87)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80168 is 104 bytes inside a block of size 144 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109AC7: ft_create_phils (check_n_create.c:76)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Block was alloc'd by thread #1
+==53585== 
+==53585==  Lock at 0x4A80068 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109979: init_args (check_n_create.c:52)
+==53585==    by 0x109AAA: ft_create_phils (check_n_create.c:75)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80068 is 40 bytes inside a block of size 120 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109A82: ft_create_phils (check_n_create.c:72)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Block was alloc'd by thread #1
+==53585== 
+==53585== Possible data race during read of size 4 at 0x4A80060 by thread #3
+==53585== Locks held: 2, at addresses 0x4A80120 0x4A80168
+==53585==    at 0x10948B: r (main.c:48)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585== 
+==53585== This conflicts with a previous write of size 4 by thread #4
+==53585== Locks held: 1, at address 0x4A80068
+==53585==    at 0x109317: ft_death (main.c:19)
+==53585==    by 0x109DFA: ft_monitor (monitor.c:32)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585==  Address 0x4a80060 is 32 bytes inside a block of size 120 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109A82: ft_create_phils (check_n_create.c:72)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Block was alloc'd by thread #1
+==53585== 
+==53585== ----------------------------------------------------------------
+==53585== 
+==53585==  Lock at 0x4A80120 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109B59: ft_create_phils (check_n_create.c:87)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80120 is 32 bytes inside a block of size 144 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109AC7: ft_create_phils (check_n_create.c:76)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Block was alloc'd by thread #1
+==53585== 
+==53585==  Lock at 0x4A80168 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109B59: ft_create_phils (check_n_create.c:87)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80168 is 104 bytes inside a block of size 144 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109AC7: ft_create_phils (check_n_create.c:76)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Block was alloc'd by thread #1
+==53585== 
+==53585== Possible data race during write of size 8 at 0x4A80160 by thread #3
+==53585== Locks held: 2, at addresses 0x4A80120 0x4A80168
+==53585==    at 0x1094AA: r (main.c:49)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585== 
+==53585== This conflicts with a previous read of size 8 by thread #4
+==53585== Locks held: none
+==53585==    at 0x109D9C: ft_monitor (monitor.c:30)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585==  Address 0x4a80160 is 96 bytes inside a block of size 144 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109AC7: ft_create_phils (check_n_create.c:76)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Block was alloc'd by thread #1
+==53585== 
+==53585== ----------------------------------------------------------------
+==53585== 
+==53585==  Lock at 0x4A80068 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109979: init_args (check_n_create.c:52)
+==53585==    by 0x109AAA: ft_create_phils (check_n_create.c:75)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80068 is 40 bytes inside a block of size 120 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109A82: ft_create_phils (check_n_create.c:72)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Block was alloc'd by thread #1
+==53585== 
+==53585== Possible data race during read of size 4 at 0x4A80060 by thread #2
+==53585== Locks held: none
+==53585==    at 0x10955C: r (main.c:41)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585== 
+==53585== This conflicts with a previous write of size 4 by thread #4
+==53585== Locks held: 1, at address 0x4A80068
+==53585==    at 0x109317: ft_death (main.c:19)
+==53585==    by 0x109DFA: ft_monitor (monitor.c:32)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585==  Address 0x4a80060 is 32 bytes inside a block of size 120 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109A82: ft_create_phils (check_n_create.c:72)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Block was alloc'd by thread #1
+==53585== 
+==53585== 
+==53585== Use --history-level=approx or =none to gain increased speed, at
+==53585== the cost of reduced accuracy of conflicting-access information
+==53585== ERROR SUMMARY: 32 errors from 10 contexts (suppressed: 34 from 34)
+==53585== 
+==53585== 1 errors in context 1 of 10:
+==53585== ----------------------------------------------------------------
+==53585== 
+==53585==  Lock at 0x4A80120 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109B59: ft_create_phils (check_n_create.c:87)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80120 is 224 bytes inside an unallocated block of size 416 in arena "client"
+==53585== 
+==53585==  Lock at 0x4A80168 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109B59: ft_create_phils (check_n_create.c:87)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80168 is 296 bytes inside an unallocated block of size 416 in arena "client"
+==53585== 
+==53585== Possible data race during write of size 8 at 0x4A80160 by thread #3
+==53585== Locks held: 2, at addresses 0x4A80120 0x4A80168
+==53585==    at 0x1094AA: r (main.c:49)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585== 
+==53585== This conflicts with a previous read of size 8 by thread #4
+==53585== Locks held: none
+==53585==    at 0x109D9C: ft_monitor (monitor.c:30)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585==  Address 0x4a80160 is 96 bytes inside a block of size 144 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109AC7: ft_create_phils (check_n_create.c:76)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Block was alloc'd by thread #1
+==53585== 
+==53585== 
+==53585== 1 errors in context 2 of 10:
+==53585== ----------------------------------------------------------------
+==53585== 
+==53585==  Lock at 0x4A80120 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109B59: ft_create_phils (check_n_create.c:87)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80120 is 224 bytes inside an unallocated block of size 416 in arena "client"
+==53585== 
+==53585==  Lock at 0x4A80168 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109B59: ft_create_phils (check_n_create.c:87)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80168 is 296 bytes inside an unallocated block of size 416 in arena "client"
+==53585== 
+==53585==  Lock at 0x4A80068 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109979: init_args (check_n_create.c:52)
+==53585==    by 0x109AAA: ft_create_phils (check_n_create.c:75)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80068 is 40 bytes inside an unallocated block of size 416 in arena "client"
+==53585== 
+==53585== Possible data race during read of size 4 at 0x4A80060 by thread #3
+==53585== Locks held: 2, at addresses 0x4A80120 0x4A80168
+==53585==    at 0x10948B: r (main.c:48)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585== 
+==53585== This conflicts with a previous write of size 4 by thread #4
+==53585== Locks held: 1, at address 0x4A80068
+==53585==    at 0x109317: ft_death (main.c:19)
+==53585==    by 0x109DFA: ft_monitor (monitor.c:32)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585==  Address 0x4a80060 is 32 bytes inside a block of size 120 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109A82: ft_create_phils (check_n_create.c:72)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Block was alloc'd by thread #1
+==53585== 
+==53585== 
+==53585== 1 errors in context 3 of 10:
+==53585== ----------------------------------------------------------------
+==53585== 
+==53585== Thread #3: lock order "0x4A80120 before 0x4A80168" violated
+==53585== 
+==53585== Observed (incorrect) order is: acquisition of lock at 0x4A80168
+==53585==    at 0x483FEDF: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109477: r (main.c:46)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585== 
+==53585==  followed by a later acquisition of lock at 0x4A80120
+==53585==    at 0x483FEDF: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109483: r (main.c:47)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585== 
+==53585== Required order was established by acquisition of lock at 0x4A80120
+==53585==    at 0x483FEDF: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109477: r (main.c:46)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585== 
+==53585==  followed by a later acquisition of lock at 0x4A80168
+==53585==    at 0x483FEDF: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109483: r (main.c:47)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585== 
+==53585==  Lock at 0x4A80120 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109B59: ft_create_phils (check_n_create.c:87)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80120 is 224 bytes inside an unallocated block of size 416 in arena "client"
+==53585== 
+==53585==  Lock at 0x4A80168 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109B59: ft_create_phils (check_n_create.c:87)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80168 is 296 bytes inside an unallocated block of size 416 in arena "client"
+==53585== 
+==53585== 
+==53585== 
+==53585== 1 errors in context 4 of 10:
+==53585== ----------------------------------------------------------------
+==53585== 
+==53585==  Lock at 0x4A80068 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109979: init_args (check_n_create.c:52)
+==53585==    by 0x109AAA: ft_create_phils (check_n_create.c:75)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80068 is 40 bytes inside an unallocated block of size 416 in arena "client"
+==53585== 
+==53585== Possible data race during write of size 4 at 0x4A80060 by thread #4
+==53585== Locks held: 1, at address 0x4A80068
+==53585==    at 0x109317: ft_death (main.c:19)
+==53585==    by 0x109DFA: ft_monitor (monitor.c:32)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585== 
+==53585== This conflicts with a previous read of size 4 by thread #3
+==53585== Locks held: none
+==53585==    at 0x10955C: r (main.c:41)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585==  Address 0x4a80060 is 32 bytes inside a block of size 120 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109A82: ft_create_phils (check_n_create.c:72)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Block was alloc'd by thread #1
+==53585== 
+==53585== 
+==53585== 1 errors in context 5 of 10:
+==53585== ----------------------------------------------------------------
+==53585== 
+==53585==  Lock at 0x4A80120 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109B59: ft_create_phils (check_n_create.c:87)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80120 is 224 bytes inside an unallocated block of size 416 in arena "client"
+==53585== 
+==53585==  Lock at 0x4A80168 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109B59: ft_create_phils (check_n_create.c:87)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80168 is 296 bytes inside an unallocated block of size 416 in arena "client"
+==53585== 
+==53585== Possible data race during read of size 8 at 0x4A80118 by thread #4
+==53585== Locks held: none
+==53585==    at 0x109D9C: ft_monitor (monitor.c:30)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585== 
+==53585== This conflicts with a previous write of size 8 by thread #2
+==53585== Locks held: 2, at addresses 0x4A80120 0x4A80168
+==53585==    at 0x1094AA: r (main.c:49)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585==  Address 0x4a80118 is 24 bytes inside a block of size 144 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109AC7: ft_create_phils (check_n_create.c:76)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Block was alloc'd by thread #1
+==53585== 
+==53585== 
+==53585== 2 errors in context 6 of 10:
+==53585== ----------------------------------------------------------------
+==53585== 
+==53585==  Lock at 0x4A80068 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109979: init_args (check_n_create.c:52)
+==53585==    by 0x109AAA: ft_create_phils (check_n_create.c:75)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80068 is 40 bytes inside an unallocated block of size 416 in arena "client"
+==53585== 
+==53585== Possible data race during read of size 4 at 0x4A80060 by thread #2
+==53585== Locks held: none
+==53585==    at 0x10955C: r (main.c:41)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585== 
+==53585== This conflicts with a previous write of size 4 by thread #4
+==53585== Locks held: 1, at address 0x4A80068
+==53585==    at 0x109317: ft_death (main.c:19)
+==53585==    by 0x109DFA: ft_monitor (monitor.c:32)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585==  Address 0x4a80060 is 32 bytes inside a block of size 120 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109A82: ft_create_phils (check_n_create.c:72)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Block was alloc'd by thread #1
+==53585== 
+==53585== 
+==53585== 2 errors in context 7 of 10:
+==53585== ----------------------------------------------------------------
+==53585== 
+==53585==  Lock at 0x4A80068 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109979: init_args (check_n_create.c:52)
+==53585==    by 0x109AAA: ft_create_phils (check_n_create.c:75)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80068 is 40 bytes inside an unallocated block of size 416 in arena "client"
+==53585== 
+==53585== Possible data race during read of size 4 at 0x4A80060 by thread #2
+==53585== Locks held: none
+==53585==    at 0x109527: r (main.c:56)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585== 
+==53585== This conflicts with a previous write of size 4 by thread #4
+==53585== Locks held: 1, at address 0x4A80068
+==53585==    at 0x109317: ft_death (main.c:19)
+==53585==    by 0x109DFA: ft_monitor (monitor.c:32)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585==  Address 0x4a80060 is 32 bytes inside a block of size 120 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109A82: ft_create_phils (check_n_create.c:72)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Block was alloc'd by thread #1
+==53585== 
+==53585== 
+==53585== 2 errors in context 8 of 10:
+==53585== ----------------------------------------------------------------
+==53585== 
+==53585==  Lock at 0x4A80120 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109B59: ft_create_phils (check_n_create.c:87)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80120 is 224 bytes inside an unallocated block of size 416 in arena "client"
+==53585== 
+==53585==  Lock at 0x4A80168 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109B59: ft_create_phils (check_n_create.c:87)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80168 is 296 bytes inside an unallocated block of size 416 in arena "client"
+==53585== 
+==53585== Possible data race during write of size 8 at 0x4A80108 by thread #2
+==53585== Locks held: 2, at addresses 0x4A80120 0x4A80168
+==53585==    at 0x109500: r (main.c:53)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585== 
+==53585== This conflicts with a previous read of size 8 by thread #4
+==53585== Locks held: none
+==53585==    at 0x109D6A: ft_monitor (monitor.c:28)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585==  Address 0x4a80108 is 8 bytes inside a block of size 144 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x109AC7: ft_create_phils (check_n_create.c:76)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Block was alloc'd by thread #1
+==53585== 
+==53585== 
+==53585== 7 errors in context 9 of 10:
+==53585== ----------------------------------------------------------------
+==53585== 
+==53585==  Lock at 0x4A80090 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x10998E: init_args (check_n_create.c:53)
+==53585==    by 0x109AAA: ft_create_phils (check_n_create.c:75)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80090 is 80 bytes inside an unallocated block of size 416 in arena "client"
+==53585== 
+==53585== Possible data race during write of size 1 at 0x4A8037D by thread #4
+==53585== Locks held: none
+==53585==    at 0x48488A6: mempcpy (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x491A631: _IO_new_file_xsputn (fileops.c:1236)
+==53585==    by 0x491A631: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==53585==    by 0x4901FE5: __vfprintf_internal (vfprintf-internal.c:1719)
+==53585==    by 0x48ECD3E: printf (printf.c:33)
+==53585==    by 0x1092FC: ft_death (main.c:17)
+==53585==    by 0x109DFA: ft_monitor (monitor.c:32)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585== 
+==53585== This conflicts with a previous write of size 1 by thread #3
+==53585== Locks held: 1, at address 0x4A80090
+==53585==    at 0x48488A6: mempcpy (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x491A631: _IO_new_file_xsputn (fileops.c:1236)
+==53585==    by 0x491A631: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==53585==    by 0x4901FE5: __vfprintf_internal (vfprintf-internal.c:1719)
+==53585==    by 0x48ECD3E: printf (printf.c:33)
+==53585==    by 0x10938F: ft_print (main.c:29)
+==53585==    by 0x109467: r (main.c:45)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==  Address 0x4a8037d is 13 bytes inside a block of size 1,024 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x490CD03: _IO_file_doallocate (filedoalloc.c:101)
+==53585==    by 0x491CECF: _IO_doallocbuf (genops.c:347)
+==53585==    by 0x491BF2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==53585==    by 0x491A6B4: _IO_new_file_xsputn (fileops.c:1244)
+==53585==    by 0x491A6B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==53585==    by 0x49027AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==53585==    by 0x48ECD3E: printf (printf.c:33)
+==53585==    by 0x10938F: ft_print (main.c:29)
+==53585==    by 0x109467: r (main.c:45)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585==  Block was alloc'd by thread #2
+==53585== 
+==53585== 
+==53585== 14 errors in context 10 of 10:
+==53585== ----------------------------------------------------------------
+==53585== 
+==53585==  Lock at 0x4A80090 was first observed
+==53585==    at 0x4843D9D: pthread_mutex_init (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x10998E: init_args (check_n_create.c:53)
+==53585==    by 0x109AAA: ft_create_phils (check_n_create.c:75)
+==53585==    by 0x10966A: main (main.c:85)
+==53585==  Address 0x4a80090 is 80 bytes inside an unallocated block of size 416 in arena "client"
+==53585== 
+==53585== Possible data race during write of size 1 at 0x4A80370 by thread #4
+==53585== Locks held: none
+==53585==    at 0x48488CC: mempcpy (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x491A631: _IO_new_file_xsputn (fileops.c:1236)
+==53585==    by 0x491A631: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==53585==    by 0x49027AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==53585==    by 0x48ECD3E: printf (printf.c:33)
+==53585==    by 0x1092FC: ft_death (main.c:17)
+==53585==    by 0x109DFA: ft_monitor (monitor.c:32)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585== 
+==53585== This conflicts with a previous write of size 1 by thread #3
+==53585== Locks held: 1, at address 0x4A80090
+==53585==    at 0x48488CC: mempcpy (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x491A631: _IO_new_file_xsputn (fileops.c:1236)
+==53585==    by 0x491A631: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==53585==    by 0x49027AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==53585==    by 0x48ECD3E: printf (printf.c:33)
+==53585==    by 0x10938F: ft_print (main.c:29)
+==53585==    by 0x109467: r (main.c:45)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==  Address 0x4a80370 is 0 bytes inside a block of size 1,024 alloc'd
+==53585==    at 0x483C893: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x490CD03: _IO_file_doallocate (filedoalloc.c:101)
+==53585==    by 0x491CECF: _IO_doallocbuf (genops.c:347)
+==53585==    by 0x491BF2F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==53585==    by 0x491A6B4: _IO_new_file_xsputn (fileops.c:1244)
+==53585==    by 0x491A6B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==53585==    by 0x49027AC: __vfprintf_internal (vfprintf-internal.c:1687)
+==53585==    by 0x48ECD3E: printf (printf.c:33)
+==53585==    by 0x10938F: ft_print (main.c:29)
+==53585==    by 0x109467: r (main.c:45)
+==53585==    by 0x4842B1A: ??? (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_helgrind-amd64-linux.so)
+==53585==    by 0x4870608: start_thread (pthread_create.c:477)
+==53585==    by 0x49AA132: clone (clone.S:95)
+==53585==  Block was alloc'd by thread #2
+==53585== 
+--53585-- 
+--53585-- used_suppression:     14 helgrind-glibc2X-005 /usr/lib/x86_64-linux-gnu/valgrind/default.supp:963
+--53585-- used_suppression:     20 helgrind-glibc2X-004 /usr/lib/x86_64-linux-gnu/valgrind/default.supp:949
+==53585== 
+==53585== ERROR SUMMARY: 32 errors from 10 contexts (suppressed: 34 from 34)

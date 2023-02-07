@@ -6,7 +6,7 @@
 /*   By: mabaffo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 13:26:41 by mabaffo           #+#    #+#             */
-/*   Updated: 2023/02/07 16:03:04 by mabaffo          ###   ########.fr       */
+/*   Updated: 2023/02/06 17:22:49 by mabaffo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,4 +108,3 @@ int	main(int ac, char **av)
  * printf("%zu: phi[0].id = %zu\n", phi->id, (phi - (phi->id - 1))->id);
  * printf("to die = %zu\n", phi->args->todie);
  */
-

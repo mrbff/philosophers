@@ -6,7 +6,7 @@
 /*   By: mabaffo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 14:19:29 by mabaffo           #+#    #+#             */
-/*   Updated: 2023/02/07 15:56:50 by mabaffo          ###   ########.fr       */
+/*   Updated: 2023/02/09 14:10:45 by mabaffo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@
 		long long		meals;//[optional], -1 if not exist
 		size_t			id;
 		long long		lst_meal;
+		pthread_mutex_t	lmmux;
+		pthread_mutex_t	mmux;
 		pthread_mutex_t	mutex;
 	}	t_phi;
 

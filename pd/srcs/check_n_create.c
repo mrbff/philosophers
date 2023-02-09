@@ -6,7 +6,7 @@
 /*   By: mabaffo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 16:53:48 by mabaffo           #+#    #+#             */
-/*   Updated: 2023/02/06 11:37:25 by mabaffo          ###   ########.fr       */
+/*   Updated: 2023/02/09 14:12:38 by mabaffo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ t_phi	*ft_create_phils(int ac, char **av)
 		phils[i].args = args;
 		id_meals_alive(phils, i, ac, av);
 		pthread_mutex_init(&(phils[i].mutex), NULL);
+		pthread_mutex_init(&(phils[i].mmux), NULL);
+		pthread_mutex_init(&(phils[i].lmmux), NULL);
 	}
 	return (phils);
 }

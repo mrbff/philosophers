@@ -6,7 +6,7 @@
 /*   By: mabaffo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 14:29:58 by mabaffo           #+#    #+#             */
-/*   Updated: 2023/02/07 17:29:47 by mabaffo          ###   ########.fr       */
+/*   Updated: 2023/02/09 20:00:20 by mabaffo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,13 @@ void	*ft_monitor(void *p)
 		full = 0;
 		while(++i < (long long)phi->args->num)
 		{
+			pthread_mutex_lock(&(phi[i].mmux));
 			if (phi[i].meals == 0)
 				full++;
+			pthread_mutex_unlock(&(phi[i].mmux));
+			pthread_mutex_lock(&(phi[i].lmmux));
 			lm = phi[i].lst_meal;
+			pthread_mutex_unlock(&(phi[i].lmmux));
 			if (ft_millisec() - lm > (long long)phi[i].args->todie)
 			{
 //				pthread_mutex_lock(&(phi->args->dmux));

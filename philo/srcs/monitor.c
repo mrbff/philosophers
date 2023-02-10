@@ -6,42 +6,67 @@
 /*   By: mabaffo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 14:29:58 by mabaffo           #+#    #+#             */
-/*   Updated: 2023/02/06 17:22:43 by mabaffo          ###   ########.fr       */
+/*   Updated: 2023/02/09 21:59:16 by mabaffo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-void	*ft_monitor(void *p)
+struct s_sup
+{
+	int			end;
+	long long	lm;
+};
+
+static int	fck_norme2(t_phi *phi, size_t *full, struct s_sup *s)
 {
 	long long	i;
-	t_phi		*phi;
-	size_t		full;
+
+	i = -1;
+	while (++i < (long long)phi->args->num)
+	{
+		pthread_mutex_lock(&(phi[i].mmux));
+		if (phi[i].meals == 0)
+			(*full)++;
+		pthread_mutex_unlock(&(phi[i].mmux));
+		pthread_mutex_lock(&(phi[i].lmmux));
+		s->lm = phi[i].lst_meal;
+		pthread_mutex_unlock(&(phi[i].lmmux));
+		if (ft_millisec() - s->lm > (long long)phi[i].args->todie)
+		{
+			ft_print("%lld %zu died\n", &phi[i]);
+			pthread_mutex_lock(&(phi->args->dmux));
+			phi->args->end = 1;
+			pthread_mutex_unlock(&(phi->args->dmux));
+			return (1);
+		}
+	}
+	return (0);
+}
+
+void	*ft_monitor(void *p)
+{
+	t_phi			*phi;
+	size_t			full;
+	struct s_sup	s;
 
 	phi = (t_phi *)p;
-	while (!(phi->args->end))
+	s.end = 0;
+	while (!s.end)
 	{
-		i = -1;
 		full = 0;
-		while(++i < (long long)phi->args->num)
-		{
-			if (phi[i].meals == 0)
-				full++;
-			if (ft_millisec() - phi[i].lst_meal > (long long)phi[i].args->todie)
-			{
-				pthread_mutex_lock(&(phi->args->dmux));
-				ft_death(ft_millisec(), &phi[i]);
-				pthread_mutex_unlock(&(phi->args->dmux));
-				return (NULL);
-			}
-		}
+		if (fck_norme2(phi, &full, &s))
+			return (NULL);
 		if (full == phi->args->num)
 		{
 			pthread_mutex_lock(&(phi->args->dmux));
 			phi->args->end = 1;
-			pthread_mutex_lock(&(phi->args->dmux));
+			pthread_mutex_unlock(&(phi->args->dmux));
 			return (NULL);
 		}
+		pthread_mutex_lock(&(phi->args->dmux));
+		s.end = phi->args->end;
+		pthread_mutex_unlock(&(phi->args->dmux));
 	}
 	return (NULL);
 }

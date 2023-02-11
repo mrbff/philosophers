@@ -6,7 +6,7 @@
 /*   By: mabaffo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 14:19:29 by mabaffo           #+#    #+#             */
-/*   Updated: 2023/02/09 21:42:02 by mabaffo          ###   ########.fr       */
+/*   Updated: 2023/02/11 19:13:48 by mabaffo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,22 +45,6 @@ int			ft_check(int ac, char **av);
 t_phi		*ft_create_phils(int ac, char **av);
 long long	ft_millisec(void);
 void		ft_print(const char *s, const t_phi *phi);
-//void		*ft_death(long long time, t_phi *phi);
 void		*ft_monitor(void *p);
 
 #endif
-/*
-typedef struct s_param
-{
-	size_t	number;//philo and forks
-	//in milliseconds
-	size_t	todie;
-//time that takes a philo to die, start from last meal or the biginning
-	size_t	toeat;
-//time that takes to eat, during this time they need to hold 2 forks
-	size_t	tosleep;//time that a philo spend to sleep
-	//[optional]
-	long long	meals;
-//time for every philo to eat for the simulation stops
-}	t_param;
-*/

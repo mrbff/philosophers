@@ -6,7 +6,7 @@
 #    By: mabaffo <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/17 20:40:06 by mabaffo           #+#    #+#              #
-#    Updated: 2023/02/05 18:16:23 by mabaffo          ###   ########.fr        #
+#    Updated: 2023/02/11 19:24:08 by mabaffo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,17 +42,18 @@ RM				:=	rm -f
 
 $(NAME):	$(OBJS)
 			@echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW}$(NAME) ${CLR_RMV}..."
-			@$(CC) $(FLAGS) $(OBJS) $(LIBFT) -o $(NAME)
-			@echo "$(GREEN)$(NAME) created ✔️ ${CLR_RMV}"
+			@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
+			@echo "$(GREEN)$(NAME) created 🍝 ${CLR_RMV}"
 
 all:			$(NAME)
 
 clean:
 				@ ${RM} *.o */*.o */*/*.o
-				@ echo "$(RED)Deleting $(CYAN)objs $(CLR_RMV)✔️"
+				@ echo "$(RED)Deleting $(CYAN)objs $(CLR_RMV)🚮"
 
 fclean:			clean
-				@ echo "$(RED)Deleting $(CYAN)binaries $(CLR_RMV)✔️"
+				rm -f $(NAME)
+				@ echo "$(RED)Deleting $(CYAN)binaries $(CLR_RMV)🚮"
 
 re:				fclean all
 

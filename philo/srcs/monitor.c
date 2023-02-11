@@ -6,7 +6,7 @@
 /*   By: mabaffo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 14:29:58 by mabaffo           #+#    #+#             */
-/*   Updated: 2023/02/09 21:59:16 by mabaffo          ###   ########.fr       */
+/*   Updated: 2023/02/11 19:46:03 by mabaffo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static int	fck_norme2(t_phi *phi, size_t *full, struct s_sup *s)
 			pthread_mutex_lock(&(phi->args->dmux));
 			phi->args->end = 1;
 			pthread_mutex_unlock(&(phi->args->dmux));
+			if (phi->args->num == 1)
+				pthread_mutex_unlock(&(phi->mutex));
 			return (1);
 		}
 	}
